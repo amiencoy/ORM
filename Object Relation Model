@@ -1,0 +1,78 @@
+<?php 
+
+abstract class driver
+{
+	protected $id_driver;
+	public $nama_driver;
+	public $no_telp_driver;
+}
+
+abstract class pelanggan
+{
+	protected $id_pelanggan;
+	public $nama;
+	public $alamat;
+	public $no_telp;
+	public function __construct($id_pelanggan, $nama, $alamat, $no_telp)
+	{
+		$this->id_pelanggan = $id_pelanggan;
+		$this->nama = $nama;
+		$this->alamat = $alamat;
+		$this->no_telp = $no_telp;
+	}
+}
+
+class pemesanan extends pelanggan
+{
+	protected $id_pemesanan;
+	public $kota_tujuan;
+	public $jumlah_orang;
+	public $tanggal_berangkat;
+	public $tanggal_pulang;
+	public function __construct($id_pemesanan, $kota_tujuan, $jumlah_orang, $tanggal_berangkat, $tanggal_pulang)
+	{
+		$this->id_pemesanan = $id_pemesanan;
+		$this->kota_tujuan = $kota_tujuan;
+		$this->jumlah_orang = $jumlah_orang;
+		$this->tanggal_berangkat = $tanggal_berangkat;
+		$this->tanggal_pulang = $tanggal_pulang;
+	}
+	public function printPemesanan()
+	{
+		echo "id pemesanan : ".$this->id_pemesanan;
+		echo "<br>"."id pelanggan : ".$this->id_pelanggan;
+		echo "<br>"."kota tujuan : ".$this->kota_tujuan;
+		echo "<br>"."jumlah penumpang : ".$this->jumlah_orang;
+		echo "<br>"."tanggal keberangkatan : ".$this->tanggal_berangkat;
+		echo "<br>"."tanggal kembali : ".$this->tanggal_pulang;
+	}
+}
+class pembayaran extends pelanggan
+{
+	protected $id_pembayaran;
+	public $tanggal_pembayaran;
+	public $jenis_pembayaran;
+	public $jumlah_pembayaran;
+	public function __construct($id_pembayaran, $tanggal_pembayaran, $jenis_pembayaran, $jumlah_pembayaran)
+	{
+		$this->id_pembayaran = $id_pembayaran;
+		$this->tanggal_pembayaran = $tanggal_pembayaran;
+		$this->jenis_pembayaran = $jenis_pembayaran;
+		$this->jumlah_pembayaran = $jumlah_pembayaran;
+	}
+	public function printPembayaran()
+	{
+		echo "<br>"."id pembayaran : ".$this->id_pembayaran;
+		echo "<br>"."id pelanggan : ".$this->id_pelanggan;
+		echo "<br>"."tanggal pembayaran : ".$this->tanggal_pembayaran;
+		echo "<br>"."jenis pembayaran : ".$this->jenis_pembayaran;
+		echo "<br>"."jumlah biaya yang dibayarkan : ".$this->jumlah_pembayaran;
+	}
+}
+
+$obj = new pemesanan("001", "jakarta", "8", "12 oktober","19 oktober");
+$obj->printPemesanan();
+$obj = new pembayaran("001","001","001", "transfer","8");
+$obj->printPembayaran();
+
+ ?>
